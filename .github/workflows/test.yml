@@ -29,7 +29,9 @@ jobs:
         pip install PyQt5 pytest
 
     - name: Ustawienie PYTHONPATH
-      run: echo "PYTHONPATH=${{ github.workspace }}" >> $GITHUB_ENV    
+      run: |
+        $env:PYTHONPATH = "${{ github.workspace }}"
+        echo "PYTHONPATH=$env:PYTHONPATH" >> $GITHUB_ENV  
       
     - name: Uruchamianie testów jednostkowych
       run: pytest ./tests/
