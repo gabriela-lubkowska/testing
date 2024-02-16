@@ -1,17 +1,17 @@
 import sys
 from PyQt5.QtWidgets import QApplication
-from ui.main_window import MainWindow  # Zakładam, że MainWindow jest zdefiniowane w ui.main_window
+from ui.main_window import MainWindow
 
 def print_help():
     help_text = """
-Dostępne argumenty:
-help - wyświetla ten komunikat
-moje_ipv4 - wyświetla adres IP komputera
+Dostepne argumenty:
+help - wyswietla ten komunikat
+moje_ipv4 - wyswietla adres IP komputera
 sprawdz_proxy - informuje, czy jest uruchomione proxy
-wersja_systemu - wyświetla wersję systemu operacyjnego
-informacje_o_cpu - wyświetla informacje o CPU
-informacje_o_pamieci - wyświetla informacje o pamięci RAM
-host_name - wyświetla nazwę hosta
+wersja_systemu - wyswietla wersje systemu operacyjnego
+informacje_o_cpu - wyswietla informacje o CPU
+informacje_o_pamieci - wyswietla informacje o pamieci RAM
+host_name - wyswietla nazwe hosta
 """
     print(help_text)
 
@@ -36,7 +36,7 @@ def main():
             if action:
                 print(action(cli_mode=True))
             else:
-                print("Nieznany argument. Użyj 'help' dla listy dostępnych argumentów.")
+                print("Nieznany argument. Uzyj 'help' dla listy dostepnych argumentow.")
         return
     else:
         window.show()
