@@ -26,18 +26,24 @@ jobs:
     - name: Instalacja zależności
       run: |
         python -m pip install --upgrade pip
-        pip install PyQt5 pytest
+        pip install PyQt5 pytest psutil pytest-qt pyinstaller
 
     - name: Ustawienie PYTHONPATH
       run: |
         $env:PYTHONPATH = "${{ github.workspace }}"
         echo "PYTHONPATH=$env:PYTHONPATH" >> $GITHUB_ENV  
-      
+        
+    - name: Ustaw kodowanie na UTF-8
+      run: |
+        $env:PYTHONIOENCODING = "utf-8"
+        [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+      shell: powershell
+    
     - name: Uruchamianie testów jednostkowych
       run: pytest ./tests/
 
     - name: Budowanie aplikacji .exe (tylko jeśli testy przeszły)
-      run: pyinstaller --onefile ./src/main.py
+      run: pyinstaller --onefile ./main.py
 
     - name: Testowanie pliku .exe
       run: |

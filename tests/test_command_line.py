@@ -1,5 +1,8 @@
 import subprocess
 import pytest
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 TEST_CASES = [
     ('help', ['Dostepne argumenty:']),
