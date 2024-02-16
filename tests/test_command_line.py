@@ -5,7 +5,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 TEST_CASES = [
-    ('help', ['Dostępne argumenty:']),
+    ('help', ['Dostepne argumenty:']),
     ('moje_ipv4', ['Twoje IP:']),
     ('sprawdz_proxy', ['Proxy enabled:', 'No proxy configured.']),
     ('wersja_systemu', ['Wersja systemu:']),
@@ -20,8 +20,8 @@ def test_app_with_args(arg, expected_outputs):
     stdout = result.stdout
     stderr = result.stderr
 
-    assert any(expected_output in stdout for expected_output in expected_outputs), f"Oczekiwano, że argument '{arg}' wywoła odpowiedź zawierającą jedno z '{expected_outputs}', ale otrzymano: {stdout}"
+    assert any(expected_output in stdout for expected_output in expected_outputs), f"Oczekiwano, ze argument '{arg}' wywola odpowiedz zawierajaca jedno z '{expected_outputs}', ale otrzymano: {stdout}"
 
     if stderr:
-        pytest.fail(f"Wystąpił błąd podczas wykonania testu dla argumentu '{arg}': {stderr}")
+        pytest.fail(f"Wystapil blad podczas wykonania testu dla argumentu '{arg}': {stderr}")
 
