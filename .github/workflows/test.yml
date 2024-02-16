@@ -32,7 +32,10 @@ jobs:
       run: |
         $env:PYTHONPATH = "${{ github.workspace }}"
         echo "PYTHONPATH=$env:PYTHONPATH" >> $GITHUB_ENV  
-      
+        
+    - name: Wyświetl bieżący katalog roboczy
+      run: pwd    
+    
     - name: Uruchamianie testów jednostkowych
       run: pytest ./tests/
 
