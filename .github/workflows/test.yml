@@ -1,0 +1,45 @@
+name: Automatyczne Testowanie
+
+on:
+  schedule:
+    - cron: '0 0 * * 0' # Raz w tygodniu o północy w niedzielę
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: powershell
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Ustawienie Pythona
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.8'
+
+    - name: Instalacja zależności
+      run: |
+        python -m pip install --upgrade pip
+        pip install PyQt5 pytest
+
+    - name: Uruchamianie testów jednostkowych
+      run: pytest ./tests/
+
+    - name: Budowanie aplikacji .exe (tylko jeśli testy przeszły)
+      run: pyinstaller --onefile ./src/main.py
+
+    - name: Testowanie pliku .exe
+      run: |
+        ./dist/main.exe help
+        ./dist/main.exe moje_ipv4
+        ./dist/main.exe sprawdz_proxy
+        ./dist/main.exe wersja_systemu
+        ./dist/main.exe informacje_o_cpu
+        ./dist/main.exe informacje_o_pamieci
+        ./dist/main.exe host_name
