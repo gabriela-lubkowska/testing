@@ -43,7 +43,7 @@ jobs:
       run: pytest ./tests/
 
     - name: Budowanie aplikacji .exe (tylko jeśli testy przeszły)
-      run: pyinstaller --onefile ./src/main.py
+      run: pyinstaller --onefile ./main.py
 
     - name: Testowanie pliku .exe
       run: |
